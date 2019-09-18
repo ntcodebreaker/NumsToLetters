@@ -342,6 +342,10 @@ class TestNumberToLetterConversions(unittest.TestCase):
         self.assertEqual(getOrderOfMagnitude(12345678), 7)
         self.assertEqual(getOrderOfMagnitude(123456789), 8)
         
+    def testMaxInputNumber(self):
+        with self.assertRaises(ValueError):
+            Converter(1000000000).convert()
+        
 if __name__ == '__main__':
     unittest.main()
 

@@ -33,9 +33,11 @@ class Converter:
 
     def convert(self):
         try:
+            if self.number > 999999999:
+                raise ValueError("Not supported number.")
             return getConverter(self.number).convert()
         except ValueError as ex:
-            return ex
+            raise ex
 
 
 class OnesConverter:
