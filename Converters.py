@@ -10,11 +10,9 @@ def getConverter(number):
         return HundredsConverter(number)
     elif orderOfMagnitude in [3, 4, 5]:
         return ThousandsConverter(number)
-    elif orderOfMagnitude in [6, 7, 8]:
-        return MillionsConverter(number)        
-    else:
-        raise ValueError("Not supported number.")
-
+    elif orderOfMagnitude > 5:
+        return MillionsConverter(number)
+    
         
 def getOrderOfMagnitude(number):
     def getOM(number, orderOfMagnitude):
@@ -33,7 +31,7 @@ class Converter:
 
     def convert(self):
         try:
-            if self.number > 999999999:
+            if self.number > 999999999999:
                 raise ValueError("Not supported number.")
             return getConverter(self.number).convert()
         except ValueError as ex:

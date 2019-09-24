@@ -329,7 +329,15 @@ class TestNumberToLetterConversions(unittest.TestCase):
         self.assertEqual(Converter(700000000).convert(), "setecientos millones")
         self.assertEqual(Converter(800000000).convert(), "ochocientos millones")
         self.assertEqual(Converter(900000000).convert(), "novecientos millones")
+
+    def testExactThousandsOfMillions(self):
+        self.assertEqual(Converter(1000000000).convert(), "mil millones")
+        self.assertEqual(Converter(9000000000).convert(), "nueve mil millones")
         
+    def testExactThousandsOfMillionsWithOnes(self):
+        self.assertEqual(Converter(1000000001).convert(), "mil millones uno")
+        self.assertEqual(Converter(9000000009).convert(), "nueve mil millones nueve")
+            
     def testOrderOfMagnitude(self):
         self.assertEqual(getOrderOfMagnitude(0), 0)
         self.assertEqual(getOrderOfMagnitude(1), 0)
@@ -344,9 +352,9 @@ class TestNumberToLetterConversions(unittest.TestCase):
         
     def testMaxInputNumber(self):
         with self.assertRaises(ValueError):
-            Converter(1000000000).convert()
-        
+            Converter(1000000000000).convert()
+    
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)
 
-    #1,000,000,000
+    #positive whole numbers up to 999,999,999,999
