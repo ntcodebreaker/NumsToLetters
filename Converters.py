@@ -57,8 +57,7 @@ class TensConverter:
         elif self.isExceptionalNumber:
             return PredefMaps.exceptionsMap[(self.numOfTens * 10) + self.remain]
         else:
-            tensText = self.tensText()
-            return "{0} y {1}".format(tensText, self.remainText())
+            return "{0} y {1}".format(self.tensText(), self.remainText())
 
     @property
     def isDivisibleByTen(self):
@@ -69,8 +68,7 @@ class TensConverter:
         return self.numOfTens in [1, 2] and self.remain in [1, 2, 3, 4, 5, 6, 7, 8, 9]
     
     def tensText(self):
-        text = Converter(self.numOfTens * 10).convert()
-        return text
+        return Converter(self.numOfTens * 10).convert()
         
     def remainText(self):
         return Converter(self.remain).convert()
